@@ -8,7 +8,7 @@ import groovy.time.*
 /**                                                                                                                         
  * This is the main build script for the Mortgage Application.                                                              
  *                                                                                                                          
- * usage: build.groovy Ýoptions¨ buildfile                                                                                  
+ * usage: build.groovy options¨ buildfile                                                                                  
  *                                                                                                                          
  * buildFile:  Relative path (from sourceDir) of the file to build. If file                                                 
  * is *.txt then assumed to be buildlist file containing a list of relative                                                 
@@ -43,12 +43,12 @@ import groovy.time.*
 def tools = loadScript(new File("Tools.groovy"))                                                                            
                                                                                                                             
 // parse command line arguments and load build properties                                                                   
-def usage = "build.groovy Ýoptions¨ buildfile"                                                                              
+def usage = "build.groovy options buildfile"                                                                              
 def opts = tools.parseArgs(args, usage)                                                                                     
 def properties = tools.loadProperties(opts)                                                                                 
-tools.validateRequiredProperties(Ý"sourceDir", "workDir", "hlq"¨)                                                           
+tools.validateRequiredProperties("sourceDir", "workDir", "hlq")                                                           
 if (!properties.userBuild)                                                                                                  
- tools.validateRequiredProperties(Ý"dbb.RepositoryClient.url", "dbb.RepositoryClient.userId", "password", "collection"¨)    
+ tools.validateRequiredProperties("dbb.RepositoryClient.url", "dbb.RepositoryClient.userId", "password", "collection")    
                                                                                                                             
 def startTime = new Date()                                                                                                  
 properties.startTime = startTime.format("yyyyMMdd.hhmmss.mmm")                                                              
@@ -76,7 +76,7 @@ if (!properties.userBuild && buildList.size() > 0) {
                                                                                                                             
  println("** Scan the build list to collect dependency data")                                                               
  def scanner = new DependencyScanner()                                                                                      
- def logicalFiles = Ý¨ as List<LogicalFile>                                                                                 
+ def logicalFiles =  as List<LogicalFile>                                                                                 
                                                                                                                             
  buildList.each { file ->                                                                                                   
      println("Scanning $file")                                                                                              
@@ -101,17 +101,17 @@ if (buildList.size() == 0)
  println("** No files in build list.  Nothing to build.")                                                                   
 else {                                                                                                                      
  // build programs by invoking the appropriate build script                                                                 
- def buildOrder = Ý"BMSProcessing", "Compile", "CobolCompile", "LinkEdit"¨                                                  
+ def buildOrder = "BMSProcessing", "Compile", "CobolCompile", "LinkEdit"¨                                                  
  // optionally execute IMS MFS builds                                                                                       
  if (properties.BUILD_MFS.toBoolean())                                                                                      
   buildOrder << "MFSGENUtility"                                                                                             
                                                                                                                             
- println("** Invoking build scripts according to build order: ${buildOrderÝ1..-1¨.join(', ')}")                             
+ println("** Invoking build scripts according to build order: ${buildOrder1..-1.join(', ')}")                             
  buildOrder.each { script ->                                                                                                
      // Use the ScriptMappings class to get the files mapped to the build script                                            
   def buildFiles = ScriptMappings.getMappedList(script, buildList)                                                          
   buildFiles.each { file ->                                                                                                 
-   runScript(new File("${script}.groovy"), Ý"file":file¨)                                                                   
+   runScript(new File("${script}.groovy"), "file":file)                                                                   
    processCounter++                                                                                                         
   }                                                                                                                         
  }                                                                                                                          
