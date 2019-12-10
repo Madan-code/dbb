@@ -9,9 +9,9 @@ buildProperties:
   - key: dbb.RepositoryClient.url
     value:
   - key: dbb.RepositoryClient.userId
-    value: 
+    value: ADMIN
   - key: dbb.RepositoryClient.passwordFile
-    value:
+    value: ${sourceDir}/build/ADMIN.pw
 
 ####################################################################
 ### The following properties can use the default values provided ###
