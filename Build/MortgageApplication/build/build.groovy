@@ -49,7 +49,7 @@ def tools = loadScript(new File("Tools.groovy"))
 // parse command line arguments and load build properties
 def usage = "build.groovy [options] buildfile"
 def opts = tools.parseArgs(args, usage)
-tools.validateRequiredOpts(opts)
+
 def properties = tools.loadProperties(opts)
 if (!properties.userBuild) 
 	tools.validateRequiredProperties(["dbb.RepositoryClient.url", "dbb.RepositoryClient.userId", "password", "collection"])
