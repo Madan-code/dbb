@@ -51,8 +51,6 @@ def usage = "build.groovy [options] buildfile"
 def opts = tools.parseArgs(args, usage)
 
 def properties = tools.loadProperties(opts)
-if (!properties.userBuild) 
-	tools.validateRequiredProperties(["dbb.RepositoryClient.url", "dbb.RepositoryClient.userId", "password", "collection"])
 	
 println("** Build properties at startup:")
 println(properties.list())
