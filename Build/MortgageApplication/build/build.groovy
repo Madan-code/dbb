@@ -76,7 +76,7 @@ if (!properties.userBuild && buildList.size() > 0) {
                                                                                                                             
  println("** Scan the build list to collect dependency data")                                                               
  def scanner = new DependencyScanner()                                                                                      
- def logicalFiles =  List<LogicalFile>                                                                                 
+ def logicalFiles = [] as List<LogicalFile>                                                                                 
                                                                                                                             
  buildList.each { file ->                                                                                                   
      println("Scanning $file")                                                                                              
