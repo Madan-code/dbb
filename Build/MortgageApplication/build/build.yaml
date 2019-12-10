@@ -11,7 +11,7 @@ buildProperties:
   - key: dbb.RepositoryClient.userId
     value: ADMIN
   - key: dbb.RepositoryClient.passwordFile
-    value: ${sourceDir}/build/ADMIN.pw
+    value: ${sourceDir}/Build/MortgageApplication/build/ADMIN.pw
 
 ####################################################################
 ### The following properties can use the default values provided ###
