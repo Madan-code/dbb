@@ -101,7 +101,7 @@ if (buildList.size() == 0)
  println("** No files in build list.  Nothing to build.")                                                                   
 else {                                                                                                                      
  // build programs by invoking the appropriate build script                                                                 
- def buildOrder = "BMSProcessing", "Compile", "CobolCompile", "LinkEdit"¨                                                  
+ def buildOrder = "BMSProcessing", "Compile", "CobolCompile", "LinkEdit"                                                  
  // optionally execute IMS MFS builds                                                                                       
  if (properties.BUILD_MFS.toBoolean())                                                                                      
   buildOrder << "MFSGENUtility"                                                                                             
